@@ -1,0 +1,15 @@
+:root {
+  color-scheme: dark;
+  --bg: #101413;
+  --panel: #151a18;
+  --line: #303730;
+  --muted: #909b91;
+  --lime: #d4ff63;
+  --coral: #ff8978;
+  --flowing: #79cbe7;
+  --racing: #d6a7ef;
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --shadow-raised: 0 24px 100px #0008;
+}
