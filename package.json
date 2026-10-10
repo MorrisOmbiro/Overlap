@@ -10,7 +10,9 @@
     "test": "node --import tsx --test src/utils/*.test.ts",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm test && npm run build",
+    "package:deploy": "npm run check && tar -czf overlap-site.tar.gz -C dist ."
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -24,5 +26,8 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vite": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
