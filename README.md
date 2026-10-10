@@ -52,3 +52,5 @@ Ruby pairs burgundy (`#801330`), blush (`#FFC6BF`), and deep teal (`#003744`), w
 Moody uses charcoal, deep teal, and plum surfaces with berry accents. Its difficulty colors progress from soft sage to muted blue and vivid pink.
 
 Fall combines warm brown surfaces and amber accents with cream, muted sage, and bright orange difficulty colors.
+
+Light themes are available in a separate dropdown group: Linen uses warm ivory and earth tones; Daybreak uses cool whites and blue accents. Both retain distinct difficulty colors and save the selected preference.

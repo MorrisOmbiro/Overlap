@@ -177,7 +177,7 @@ h1 {
 }
 
 .primary:hover {
-  background: color-mix(in srgb, var(--lime), white 20%);
+  background: var(--button-hover);
 }
 
 .round-note {
@@ -340,7 +340,7 @@ dialog b {
 
 .close {
   float: right;
-  color: #ddd;
+  color: var(--text);
   background: none;
   border: 0;
   font-size: 25px;

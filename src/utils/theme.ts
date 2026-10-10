@@ -10,7 +10,9 @@ const isThemeName = (value: unknown): value is ThemeName =>
   value === "dark" ||
   value === "ruby" ||
   value === "moody" ||
-  value === "fall";
+  value === "fall" ||
+  value === "linen" ||
+  value === "daybreak";
 
 const readTheme = (): ThemeName => {
   try {
