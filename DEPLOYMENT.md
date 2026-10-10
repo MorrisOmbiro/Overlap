@@ -2,7 +2,42 @@
 
 Overlap is a static React application. It needs no application server, database,
 environment variables, or secrets. The production output is independent of the
-domain, so it can run on a hosting preview URL before you purchase overlap.io.
+domain, so it can run on a hosting preview URL before you purchase overlap.run.
+
+## Vercel deployment to overlap.run
+
+One-time setup from the repository root:
+
+```sh
+npm ci
+npx vercel login
+npx vercel link
+```
+
+Choose your Vercel account/team and create or select the Overlap project.
+The link is saved in .vercel/ (ignored by Git).
+
+Run the deployment script:
+
+```sh
+npm run deploy
+```
+
+It checks formatting, runs tests, builds locally, and then publishes a production
+deployment to the linked Vercel project. Vercel also builds the uploaded source
+using vercel.json. Do not run this command unless you intend to publish.
+
+After the first deployment, add overlap.run in that project's Settings → Domains.
+Follow the exact DNS and ownership verification instructions Vercel supplies.
+Once the domain is verified and assigned to production, subsequent npm run deploy
+commands update overlap.run automatically. Until then, the deployment is served
+at its Vercel URL. The script does not purchase a domain or edit your DNS.
+
+Production deployments affect the project chosen during vercel link. To change
+the destination account or project, run npx vercel link again before deploying.
+
+See [Vercel deployment documentation](https://vercel.com/docs/cli/deploy) and
+[custom domain assignment](https://vercel.com/docs/cli/alias).
 
 ## Build settings
 
@@ -34,13 +69,13 @@ files or node_modules/.
 
 ## Connect the domain after purchase
 
-1. Purchase overlap.io if it is available and verify you can manage its DNS.
-2. Add overlap.io as a custom domain in your hosting provider's dashboard.
+1. Purchase overlap.run if it is available and verify you can manage its DNS.
+2. Add overlap.run as a custom domain in your hosting provider's dashboard.
 3. Copy the exact DNS records supplied by that host into the domain's DNS
    settings. Required record types and destinations depend on the host;
    there are no placeholder DNS records to copy from this repository.
-4. Optionally add www.overlap.io and configure it to redirect to
-   https://overlap.io using your host's domain settings.
+4. Optionally add www.overlap.run and configure it to redirect to
+   https://overlap.run using your host's domain settings.
 5. Wait for the host to verify DNS and issue an HTTPS certificate, then enable
    HTTP-to-HTTPS redirection.
 6. Open the domain and verify that the page and its assets load successfully.
@@ -62,4 +97,4 @@ required. If routes are introduced later, configure a suitable fallback then.
 
 Theme preferences and personal best scores belong to the browser origin.
 Values saved on localhost or a temporary hosting URL will not transfer to
-overlap.io.
+overlap.run.

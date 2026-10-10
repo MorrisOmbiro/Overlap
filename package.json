@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run format:check && npm test && npm run build",
-    "package:deploy": "npm run check && tar -czf overlap-site.tar.gz -C dist ."
+    "package:deploy": "npm run check && tar -czf overlap-site.tar.gz -C dist .",
+    "deploy": "npm run check && vercel deploy --prod"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -25,6 +26,7 @@
     "prettier": "^3.9.10",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
+    "vercel": "^63.1.2",
     "vite": "^7.0.0"
   },
   "engines": {

@@ -37,7 +37,9 @@ The game engine lives in a React ref; React renders the interface at up to 30 fr
 
 ## Deploy
 
-Run `npm run package:deploy` to validate the project and create `overlap-site.tar.gz`. Deploy the contents of `dist/` to a static host. See [DEPLOYMENT.md](DEPLOYMENT.md) for build settings and steps to connect overlap.io after purchasing the domain.
+For Vercel, complete the one-time login, project linking, and overlap.run domain setup in [DEPLOYMENT.md](DEPLOYMENT.md), then run `npm run deploy` to validate and publish production.
+
+Run `npm run package:deploy` to validate the project and create `overlap-site.tar.gz`. Deploy the contents of `dist/` to a static host. See [DEPLOYMENT.md](DEPLOYMENT.md) for build settings and steps to connect overlap.run after purchasing the domain.
 
 Google Fonts are optional: system fallback fonts work offline. Personal best is saved only in this browser's local storage. Screen widths under 760 pixels use 10 passages instead of 20. Only the active passage affects points. Wrong characters do not advance the cursor; characters overtaken by the pace marker deduct points. A score of exactly zero does not end the game.
 
