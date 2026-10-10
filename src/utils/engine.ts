@@ -16,6 +16,7 @@ export class GameEngine {
   width: number;
   height: number;
   compact: boolean;
+  extreme: boolean;
   best: number;
   random: () => number;
   status: GameStatus;
@@ -34,12 +35,14 @@ export class GameEngine {
     width = 1400,
     height = 600,
     compact = false,
+    extreme = false,
     best = 0,
     random = Math.random,
   }: GameOptions = {}) {
     this.width = width;
     this.height = height;
     this.compact = compact;
+    this.extreme = extreme;
     this.best = best;
     this.random = random;
     this.status = "ready";
@@ -75,6 +78,13 @@ export class GameEngine {
     this.passages = Array.from({ length: passageCount }, (_, passageId) =>
       this.createPassage(passageId),
     );
+  }
+
+  setExtreme(enabled: boolean) {
+    if (this.status === "running" || this.extreme === enabled) return false;
+    this.extreme = enabled;
+    this.seed();
+    return true;
   }
 
   start() {

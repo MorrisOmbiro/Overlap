@@ -8,13 +8,19 @@ function createPassage(
     width = 1400,
     height = 600,
     compact = false,
+    extreme = false,
     random = Math.random,
   }: GameOptions,
   entering = false,
   usedSentences = new Set<string>(),
 ): PassageState {
-  const level = levels[id % 3];
-  const text = generatePassageText(id % levels.length, random, usedSentences);
+  const difficultyIndex = id % (extreme ? levels.length : levels.length - 1);
+  const level = levels[difficultyIndex];
+  const text = generatePassageText(
+    Math.min(difficultyIndex, 2),
+    random,
+    usedSentences,
+  );
   const columns = compact ? 2 : 5;
   const rows = Math.ceil((compact ? 10 : 20) / columns);
   const angle = [0, Math.PI, Math.PI / 2, -Math.PI / 2, 0.6, 2.5, -0.6, -2.5][

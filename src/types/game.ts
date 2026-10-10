@@ -26,6 +26,7 @@ export interface PassageState {
 }
 
 export interface GameOptions {
+  extreme?: boolean;
   width?: number;
   height?: number;
   compact?: boolean;

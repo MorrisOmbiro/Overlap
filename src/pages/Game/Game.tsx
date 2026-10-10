@@ -55,7 +55,11 @@ const Game: React.FC = () => {
             onStart={startRound}
           />
         </GameArena>
-        <DifficultyLegend />
+        <DifficultyLegend
+          extreme={game.extreme}
+          disabled={game.status === "running"}
+          onExtremeChange={controls.setExtreme}
+        />
         <ActivePassageBar active={game.active} status={game.status} />
         <TypingInput inputRef={inputRef} onSubmit={submitInput} />
         <GameFooter />

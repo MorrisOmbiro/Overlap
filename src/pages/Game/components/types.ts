@@ -45,3 +45,9 @@ export interface HelpDialogProps {
 export interface GameContentProps {
   children: ReactNode;
 }
+
+export interface DifficultyLegendProps {
+  extreme: boolean;
+  disabled: boolean;
+  onExtremeChange: (enabled: boolean) => void;
+}

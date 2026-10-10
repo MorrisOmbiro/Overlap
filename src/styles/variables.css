@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  --extreme: #c595ff;
   --bg: #101413;
   --button-text: #1a2510;
   --button-hover: color-mix(in srgb, var(--lime), white 20%);
@@ -142,6 +143,7 @@
 :root[data-theme="linen"],
 :root[data-theme="daybreak"] {
   color-scheme: light;
+  --extreme: #7325b3;
   --button-text: #ffffff;
   --button-hover: color-mix(in srgb, var(--lime), black 15%);
   --shadow-raised: 0 24px 70px #0002;

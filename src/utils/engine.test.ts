@@ -87,3 +87,42 @@ test("passages leaving the screen deselect without penalty", () => {
 test("compact layout scales to ten paragraphs", () => {
   assert.equal(new GameEngine({ compact: true }).passages.length, 10);
 });
+
+test("Extreme is opt-in and persists through replays", () => {
+  const game = new GameEngine({ random: () => 0.5 });
+  assert.ok(game.passages.every((passage) => passage.level.mult <= 4));
+  assert.equal(game.setExtreme(true), true);
+  assert.ok(game.passages.some((passage) => passage.level.name === "EXTREME"));
+  game.start();
+  assert.equal(game.setExtreme(false), false);
+  const extremePassage = game.passages.find(
+    (passage) => passage.level.mult === 8,
+  )!;
+  game.select(extremePassage.id);
+  game.type(game.active!.text[game.active!.position]);
+  assert.equal(game.score, 8);
+  game.active!.position = Math.floor(game.active!.marker);
+  game.tick(1 / extremePassage.level.cps + 0.001);
+  assert.equal(game.score, 0);
+  game.finish("TEST");
+  game.start();
+  assert.ok(game.passages.some((passage) => passage.level.mult === 8));
+  game.finish("TEST");
+  assert.equal(game.setExtreme(false), true);
+  assert.ok(game.passages.every((passage) => passage.level.mult <= 4));
+});
+
+test("Extreme replacement passages retain their tier in compact layout", () => {
+  const game = new GameEngine({
+    compact: true,
+    extreme: true,
+    random: () => 0.5,
+  });
+  const passage = game.passages.find(
+    (candidate) => candidate.level.mult === 8,
+  )!;
+  passage.x = game.width + 30;
+  game.tick(0);
+  assert.equal(game.passages.length, 10);
+  assert.equal(game.passages[passage.id].level.mult, 8);
+});

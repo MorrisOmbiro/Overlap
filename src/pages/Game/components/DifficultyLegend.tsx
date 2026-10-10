@@ -1,15 +1,47 @@
 import type React from "react";
-const DifficultyLegend: React.FC = () => (
+import type { DifficultyLegendProps } from "./types";
+
+const DifficultyLegend: React.FC<DifficultyLegendProps> = ({
+  extreme,
+  disabled,
+  onExtremeChange,
+}) => (
   <section className="bottom">
-    <div className="legend">
-      <span>
-        <i className="easy" /> Drifting <b>1×</b>
-      </span>
-      <span>
-        <i className="medium" /> Flowing <b>2×</b>
-      </span>
-      <span>
-        <i className="hard" /> Racing <b>4×</b>
+    <div className="difficulty-controls">
+      <div className="legend">
+        <span>
+          <i className="easy" /> Drifting <b>1×</b>
+        </span>
+        <span>
+          <i className="medium" /> Flowing <b>2×</b>
+        </span>
+        <span>
+          <i className="hard" /> Racing <b>4×</b>
+        </span>
+      </div>
+      <label
+        className="extreme-toggle"
+        title={
+          disabled
+            ? "Change difficulty between rounds"
+            : "Add faster passages worth 8 points per character"
+        }
+      >
+        <input
+          type="checkbox"
+          role="switch"
+          checked={extreme}
+          disabled={disabled}
+          onChange={(event) => onExtremeChange(event.target.checked)}
+          aria-describedby="extreme-description"
+        />
+        <span className="toggle-track" aria-hidden="true" />
+        <span>
+          Extreme <b>8×</b>
+        </span>
+      </label>
+      <span id="extreme-description" className="extreme-description">
+        {disabled ? "Change between rounds" : "Add a fourth difficulty"}
       </span>
     </div>
     <p>Click any passage to make it yours.</p>

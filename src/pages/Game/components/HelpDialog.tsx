@@ -30,7 +30,8 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ helpRef, onClose }) => (
       </li>
       <li>
         <b>Choose your risk.</b> Earn 1, 2, or 4 points per correct character.
-        Missed characters cost the same amount.
+        Enable Extreme between rounds to add faster passages worth 8 points per
+        character. Missed characters cost the same amount.
       </li>
     </ol>
     <p>

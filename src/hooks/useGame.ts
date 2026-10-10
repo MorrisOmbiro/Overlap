@@ -57,6 +57,10 @@ const useGame = (arenaRef: RefObject<HTMLElement | null>) => {
 
   return {
     game,
+    setExtreme: (enabled: boolean) => {
+      game.setExtreme(enabled);
+      render();
+    },
     start: () => {
       game.start();
       render();
