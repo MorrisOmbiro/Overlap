@@ -1,6 +1,7 @@
 :root {
   color-scheme: dark;
   --bg: #101413;
+  --button-text: #1a2510;
   --panel: #151a18;
   --line: #303730;
   --muted: #909b91;
@@ -11,6 +12,7 @@
   --font-body: "DM Sans", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
+  --passage-border: color-mix(in srgb, var(--text) 55%, var(--surface));
   --shadow-raised: 0 24px 100px #0008;
 }
 
@@ -51,4 +53,84 @@
   --racing: #ff50b5;
   --surface: #211829;
   --surface-raised: #3c2949;
+}
+
+:root[data-theme="city"] {
+  --bg: #191c22;
+  --panel: #242830;
+  --line: #454b56;
+  --muted: #a9afb9;
+  --text: #f1f0eb;
+  --lime: #f4c65e;
+  --coral: #ff876b;
+  --button-text: #242019;
+  --drifting: #b7d9c2;
+  --flowing: #859fc2;
+  --racing: #ff654f;
+  --surface: #20242c;
+  --surface-raised: #343a45;
+}
+
+:root[data-theme="dark"] {
+  --bg: #080808;
+  --panel: #141414;
+  --line: #363636;
+  --muted: #a6a6a6;
+  --text: #f2f2f2;
+  --lime: #ededed;
+  --coral: #c9c9c9;
+  --button-text: #111111;
+  --drifting: #b7dfc2;
+  --flowing: #849fc7;
+  --racing: #ff5878;
+  --surface: #101010;
+  --surface-raised: #252525;
+}
+
+:root[data-theme="ruby"] {
+  --bg: #210e17;
+  --panel: #451526;
+  --line: #801330;
+  --muted: #ccaeb6;
+  --text: #fff0ed;
+  --lime: #ffc6bf;
+  --coral: #ff697b;
+  --button-text: #003744;
+  --drifting: #ffc6bf;
+  --flowing: #80adb5;
+  --racing: #ff426b;
+  --surface: #003744;
+  --surface-raised: #801330;
+}
+
+:root[data-theme="moody"] {
+  --bg: #171f22;
+  --panel: #253034;
+  --line: #5b293e;
+  --muted: #b3a8b0;
+  --text: #f4edf1;
+  --lime: #e49abc;
+  --coral: #f17cae;
+  --button-text: #251620;
+  --drifting: #c5dcd1;
+  --flowing: #82a7b8;
+  --racing: #f04c9b;
+  --surface: #194b4c;
+  --surface-raised: #5b293e;
+}
+
+:root[data-theme="fall"] {
+  --bg: #201710;
+  --panel: #302219;
+  --line: #65503b;
+  --muted: #bdaa94;
+  --text: #fff1df;
+  --lime: #edbd6b;
+  --coral: #ff9064;
+  --button-text: #291b0e;
+  --drifting: #e8d6af;
+  --flowing: #99ad94;
+  --racing: #ff7745;
+  --surface: #2b2017;
+  --surface-raised: #493222;
 }

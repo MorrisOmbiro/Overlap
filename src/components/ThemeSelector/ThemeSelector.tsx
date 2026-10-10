@@ -18,6 +18,11 @@ const ThemeSelector: React.FC = () => {
         <option value="forest">Forest</option>
         <option value="ocean">Ocean</option>
         <option value="twilight">Twilight</option>
+        <option value="city">City</option>
+        <option value="dark">Dark</option>
+        <option value="ruby">Ruby</option>
+        <option value="moody">Moody</option>
+        <option value="fall">Fall</option>
       </select>
     </label>
   );

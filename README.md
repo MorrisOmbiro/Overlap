@@ -43,4 +43,12 @@ Google Fonts are optional: system fallback fonts work offline. Personal best is 
 
 Passages are generated from word banks in `src/data/texts.json`. Each passage combines three new sentences; sentence history is retained across replays until the game is reloaded. Drifting uses a smaller, simpler vocabulary, while Flowing and Racing mix familiar short and medium-length words. Racing increases pace rather than vocabulary complexity.
 
-Use the header theme selector to choose Forest, Ocean, or Twilight. The selection is saved locally. Each palette uses a soft Drifting color, a neutral Flowing color, and a vivid Racing color. Theme tokens live in `src/styles/variables.css`, with state managed by `src/context/ThemeProvider.tsx`.
+Use the header theme selector to choose Forest, Ocean, Twilight, City, Dark, Ruby, Moody, or Fall. The selection is saved locally. Each palette uses a soft Drifting color, a neutral Flowing color, and a vivid Racing color. Theme tokens live in `src/styles/variables.css`, with state managed by `src/context/ThemeProvider.tsx`.
+
+City pairs slate surfaces with warm streetlight accents. Dark uses near-black surfaces and grayscale controls, retaining color only for the difficulty indicators.
+
+Ruby pairs burgundy (`#801330`), blush (`#FFC6BF`), and deep teal (`#003744`), with soft blush, muted teal, and vivid ruby difficulty colors.
+
+Moody uses charcoal, deep teal, and plum surfaces with berry accents. Its difficulty colors progress from soft sage to muted blue and vivid pink.
+
+Fall combines warm brown surfaces and amber accents with cream, muted sage, and bright orange difficulty colors.

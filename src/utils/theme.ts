@@ -3,7 +3,14 @@ import type { ThemeName } from "../types/theme";
 const THEME_STORAGE_KEY = "overlap-theme";
 
 const isThemeName = (value: unknown): value is ThemeName =>
-  value === "forest" || value === "ocean" || value === "twilight";
+  value === "forest" ||
+  value === "ocean" ||
+  value === "twilight" ||
+  value === "city" ||
+  value === "dark" ||
+  value === "ruby" ||
+  value === "moody" ||
+  value === "fall";
 
 const readTheme = (): ThemeName => {
   try {

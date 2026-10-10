@@ -168,7 +168,7 @@ h1 {
   background: var(--lime);
   border: 0;
   border-radius: 6px;
-  color: #1a2510;
+  color: var(--button-text);
   font-weight: 700;
   padding: 16px 20px;
   display: flex;

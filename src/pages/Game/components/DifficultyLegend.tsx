@@ -13,7 +13,6 @@ const DifficultyLegend: React.FC = () => (
       </span>
     </div>
     <p>Click any passage to make it yours.</p>
-    <span className="free">↗ Switching is always free</span>
   </section>
 );
 
