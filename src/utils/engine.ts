@@ -1,3 +1,4 @@
+import { containPassage } from "./bounds";
 import type { GameOptions, GameStatus, PassageState } from "../types";
 import { createPassage, preparePassageSelection } from "./passage";
 
@@ -17,6 +18,7 @@ export class GameEngine {
   height: number;
   compact: boolean;
   extreme: boolean;
+  keepInBounds: boolean;
   best: number;
   random: () => number;
   status: GameStatus;
@@ -36,6 +38,7 @@ export class GameEngine {
     height = 600,
     compact = false,
     extreme = false,
+    keepInBounds = false,
     best = 0,
     random = Math.random,
   }: GameOptions = {}) {
@@ -43,6 +46,7 @@ export class GameEngine {
     this.height = height;
     this.compact = compact;
     this.extreme = extreme;
+    this.keepInBounds = keepInBounds;
     this.best = best;
     this.random = random;
     this.status = "ready";
@@ -67,7 +71,14 @@ export class GameEngine {
   }
 
   createPassage(passageId: number, entering = false): PassageState {
-    return createPassage(passageId, this, entering, this.usedSentences);
+    const passage = createPassage(
+      passageId,
+      this,
+      entering,
+      this.usedSentences,
+    );
+    if (this.keepInBounds) containPassage(passage, this.width, this.height);
+    return passage;
   }
 
   seed() {
@@ -78,6 +89,15 @@ export class GameEngine {
     this.passages = Array.from({ length: passageCount }, (_, passageId) =>
       this.createPassage(passageId),
     );
+  }
+
+  setKeepInBounds(enabled: boolean) {
+    this.keepInBounds = enabled;
+    if (enabled) {
+      for (const passage of this.passages) {
+        containPassage(passage, this.width, this.height);
+      }
+    }
   }
 
   setExtreme(enabled: boolean) {
@@ -176,6 +196,7 @@ export class GameEngine {
       const passage = this.passages[passageIndex];
       passage.x += passage.vx * movementStepSeconds;
       passage.y += passage.vy * movementStepSeconds;
+      if (this.keepInBounds) containPassage(passage, this.width, this.height);
       passage.errorTime = Math.max(0, passage.errorTime - elapsedSeconds);
       if (this.status === "running") {
         const previousMarkerIndex = Math.floor(passage.marker);
@@ -220,7 +241,7 @@ export class GameEngine {
         passage.y > this.height + PASSAGE_EXIT_MARGIN ||
         passage.y < -passage.height - PASSAGE_EXIT_MARGIN;
 
-      if (hasLeftArena) {
+      if (!this.keepInBounds && hasLeftArena) {
         if (passage.id === this.activeId) {
           this.activeId = null;
           this.notify("Your passage drifted away. Choose another.");

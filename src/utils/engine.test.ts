@@ -126,3 +126,48 @@ test("Extreme replacement passages retain their tier in compact layout", () => {
   assert.equal(game.passages.length, 10);
   assert.equal(game.passages[passage.id].level.mult, 8);
 });
+
+test("bounds mode bounces cards and preserves active passage and score", () => {
+  const game = new GameEngine({ keepInBounds: true });
+  game.start();
+  game.select(0);
+  const passage = game.active!;
+  game.score = 10;
+  passage.x = game.width + 30;
+  passage.y = game.height + 30;
+  passage.vx = 9;
+  passage.vy = 9;
+  game.tick(0);
+  assert.equal(game.active, passage);
+  assert.equal(game.score, 10);
+  assert.equal(passage.x, game.width - passage.width);
+  assert.equal(passage.y, game.height - passage.height);
+  assert.equal(passage.vx, -9);
+  assert.equal(passage.vy, -9);
+  passage.x = -10;
+  passage.y = -10;
+  game.tick(0);
+  assert.equal(passage.x, 0);
+  assert.equal(passage.y, 0);
+  assert.equal(passage.vx, 9);
+  assert.equal(passage.vy, 9);
+});
+
+test("bounds can be enabled mid-round and disabled without resetting gameplay", () => {
+  const game = newGame();
+  game.select(0);
+  const passage = game.active!;
+  passage.x = -30;
+  game.setKeepInBounds(true);
+  assert.equal(passage.x, 0);
+  assert.equal(game.active, passage);
+  game.width = 100;
+  game.height = 100;
+  game.tick(0);
+  assert.equal(passage.x, 0);
+  assert.equal(passage.y, 0);
+  game.setKeepInBounds(false);
+  passage.x = game.width + 30;
+  game.tick(0);
+  assert.equal(game.active, null);
+});

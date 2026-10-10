@@ -18,6 +18,7 @@ export interface RoundOverlayProps {
   onStart: () => void;
 }
 export interface GameArenaProps {
+  keepInBounds: boolean;
   arenaRef: RefObject<HTMLElement | null>;
   passages: PassageState[];
   activeId: number | null;
@@ -47,6 +48,8 @@ export interface GameContentProps {
 }
 
 export interface DifficultyLegendProps {
+  keepInBounds: boolean;
+  onBoundsChange: (enabled: boolean) => void;
   extreme: boolean;
   disabled: boolean;
   onExtremeChange: (enabled: boolean) => void;

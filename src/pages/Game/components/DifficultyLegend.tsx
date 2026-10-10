@@ -2,6 +2,8 @@ import type React from "react";
 import type { DifficultyLegendProps } from "./types";
 
 const DifficultyLegend: React.FC<DifficultyLegendProps> = ({
+  keepInBounds,
+  onBoundsChange,
   extreme,
   disabled,
   onExtremeChange,
@@ -43,6 +45,19 @@ const DifficultyLegend: React.FC<DifficultyLegendProps> = ({
       <span id="extreme-description" className="extreme-description">
         {disabled ? "Change between rounds" : "Add a fourth difficulty"}
       </span>
+      <label
+        className="extreme-toggle bounds-toggle"
+        title="Bounce passages off the arena edges"
+      >
+        <input
+          type="checkbox"
+          role="switch"
+          checked={keepInBounds}
+          onChange={(event) => onBoundsChange(event.target.checked)}
+        />
+        <span className="toggle-track" aria-hidden="true" />
+        <span>Keep passages in bounds</span>
+      </label>
     </div>
     <p>Click any passage to make it yours.</p>
   </section>

@@ -5,6 +5,7 @@ import type { GameArenaProps } from "./types";
 
 const GameArena: React.FC<GameArenaProps> = ({
   arenaRef,
+  keepInBounds,
   passages,
   activeId,
   onSelect,
@@ -12,7 +13,12 @@ const GameArena: React.FC<GameArenaProps> = ({
   messageVisible,
   children,
 }) => (
-  <section id="arena" ref={arenaRef} aria-label="Moving typing passages">
+  <section
+    id="arena"
+    data-bounded={keepInBounds}
+    ref={arenaRef}
+    aria-label="Moving typing passages"
+  >
     <div className="arena-label">
       <span className="live-dot" />
       <span>{passages.length} passages · always in motion</span>

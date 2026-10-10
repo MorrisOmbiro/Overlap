@@ -6,3 +6,4 @@ export { readBestScore, saveBestScore } from "./storage";
 export { registerGameTools } from "./gameTools";
 export { generatePassageText } from "./text";
 export { isThemeName, readTheme, saveTheme } from "./theme";
+export { containPassage } from "./bounds";

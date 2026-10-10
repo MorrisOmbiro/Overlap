@@ -58,3 +58,5 @@ Fall combines warm brown surfaces and amber accents with cream, muted sage, and 
 Light themes are available in a separate dropdown group: Linen uses warm ivory and earth tones; Daybreak uses cool whites and blue accents. Both retain distinct difficulty colors and save the selected preference.
 
 Enable Extreme beside the difficulty legend between rounds to add a fourth tier: 8× scoring, a 108 WPM marker, and faster passage movement. It uses the same approachable vocabulary as Racing. The setting stays enabled for replays during the session; controls are locked during a round.
+
+“Keep passages in bounds” makes cards bounce at the arena edges. It can be switched during a round without resetting your score or active passage, and stays enabled for replays in the session.

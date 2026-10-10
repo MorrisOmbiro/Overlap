@@ -522,3 +522,16 @@ dialog b {
   color: var(--muted);
   font-size: 11px;
 }
+
+.bounds-toggle {
+  --extreme: var(--lime);
+}
+
+#arena {
+  container-type: size;
+}
+#arena[data-bounded="true"] .passage {
+  max-width: 100cqw;
+  max-height: 100cqh;
+  overflow: auto;
+}

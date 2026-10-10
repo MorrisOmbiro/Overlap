@@ -39,6 +39,7 @@ const Game: React.FC = () => {
           remaining={Math.ceil(game.remaining)}
         />
         <GameArena
+          keepInBounds={game.keepInBounds}
           arenaRef={arenaRef}
           passages={game.passages}
           activeId={game.activeId}
@@ -56,6 +57,8 @@ const Game: React.FC = () => {
           />
         </GameArena>
         <DifficultyLegend
+          keepInBounds={game.keepInBounds}
+          onBoundsChange={controls.setKeepInBounds}
           extreme={game.extreme}
           disabled={game.status === "running"}
           onExtremeChange={controls.setExtreme}

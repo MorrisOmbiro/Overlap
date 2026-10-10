@@ -57,6 +57,10 @@ const useGame = (arenaRef: RefObject<HTMLElement | null>) => {
 
   return {
     game,
+    setKeepInBounds: (enabled: boolean) => {
+      game.setKeepInBounds(enabled);
+      render();
+    },
     setExtreme: (enabled: boolean) => {
       game.setExtreme(enabled);
       render();
