@@ -6,9 +6,9 @@
   padding: 13px 16px;
   text-align: left;
   border: 1px solid transparent;
-  background: #19201af0;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
   border-radius: 7px;
-  color: #a0ad99;
+  color: var(--muted);
   transition:
     background 0.15s,
     border-color 0.15s;
@@ -16,9 +16,9 @@
 }
 
 .passage:hover {
-  background: #242e23;
-  border-color: #66784a;
-  color: #e3eccf;
+  background: var(--surface-raised);
+  border-color: var(--muted);
+  color: var(--text);
   z-index: 30 !important;
 }
 
@@ -38,11 +38,11 @@
 }
 
 .passage.selected {
-  background: #263323;
+  background: var(--surface-raised);
   border-color: var(--lime);
-  color: #f2f7e8;
+  color: var(--text);
   box-shadow:
-    0 0 0 4px #d4ff6310,
+    0 0 0 4px color-mix(in srgb, var(--lime) 6%, transparent),
     0 10px 50px #0008;
   z-index: 40 !important;
 }
@@ -56,11 +56,11 @@
 }
 
 .skipped {
-  color: #ff89788a;
+  color: color-mix(in srgb, var(--coral) 54%, transparent);
 }
 
 .cursor {
-  background: #d4ff6325;
+  background: color-mix(in srgb, var(--lime) 15%, transparent);
   border-bottom: 2px solid var(--lime);
 }
 

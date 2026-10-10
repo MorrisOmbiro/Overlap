@@ -8,7 +8,7 @@
 body {
   margin: 0;
   background: var(--bg);
-  color: #edf0e8;
+  color: var(--text);
   font-family: var(--font-body);
 }
 

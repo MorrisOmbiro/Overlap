@@ -31,6 +31,7 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
         game.status !== "running" ||
         helpRef.current?.open ||
         event.target === inputRef.current ||
+        (event.target instanceof Element && event.target.closest("select")) ||
         event.ctrlKey ||
         event.metaKey ||
         event.altKey ||

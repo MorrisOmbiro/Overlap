@@ -13,3 +13,42 @@
   --font-mono: "IBM Plex Mono", monospace;
   --shadow-raised: 0 24px 100px #0008;
 }
+
+:root {
+  --text: #edf0e8;
+  --drifting: #bedda9;
+  --flowing: #a5b6c4;
+  --racing: #ff688b;
+  --surface: #151a17;
+  --surface-raised: #263323;
+}
+
+:root[data-theme="ocean"] {
+  --bg: #0d151e;
+  --panel: #142231;
+  --line: #334a60;
+  --muted: #9badbf;
+  --text: #eaf4ff;
+  --lime: #91dbec;
+  --coral: #ff987b;
+  --drifting: #b9ead2;
+  --flowing: #769ecb;
+  --racing: #ff784f;
+  --surface: #122030;
+  --surface-raised: #203b50;
+}
+
+:root[data-theme="twilight"] {
+  --bg: #18111f;
+  --panel: #251b30;
+  --line: #4b3b59;
+  --muted: #b5a4c2;
+  --text: #f5ecff;
+  --lime: #d8b4ff;
+  --coral: #ff967c;
+  --drifting: #e6c5a3;
+  --flowing: #9b9bd0;
+  --racing: #ff50b5;
+  --surface: #211829;
+  --surface-raised: #3c2949;
+}
