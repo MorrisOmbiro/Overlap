@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import type React from "react";
 import { ThemeProvider } from "./context";
 import { Game } from "./pages";
