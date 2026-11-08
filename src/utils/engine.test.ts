@@ -76,6 +76,7 @@ test("round ends at 60 seconds and replay resets counters", () => {
 
 test("passages leaving the screen deselect without penalty", () => {
   const game = newGame();
+  game.setKeepInBounds(false);
   game.select(0);
   game.active!.x = game.width + 30;
   game.tick(0);
@@ -127,8 +128,9 @@ test("Extreme replacement passages retain their tier in compact layout", () => {
   assert.equal(game.passages[passage.id].level.mult, 8);
 });
 
-test("bounds mode bounces cards and preserves active passage and score", () => {
-  const game = new GameEngine({ keepInBounds: true });
+test("bounds mode defaults on, bounces cards and preserves active passage and score", () => {
+  const game = new GameEngine();
+  assert.equal(game.keepInBounds, true);
   game.start();
   game.select(0);
   const passage = game.active!;

@@ -10,7 +10,7 @@ const GameToolbar: React.FC<GameToolbarProps> = ({
   <section className="toolbar">
     <div>
       <div className="eyebrow">THE PLAYING FIELD</div>
-      <h1>Find your flow.</h1>
+      <p className="game-tagline">Find your flow.</p>
     </div>
     <div className="stats">
       <div>

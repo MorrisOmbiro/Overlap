@@ -25,7 +25,7 @@ test("random input changes passages and the same input is reproducible", () => {
 });
 
 test("replays and replacement passages do not reuse earlier sentences", () => {
-  const game = new GameEngine({ random: () => 0.5 });
+  const game = new GameEngine({ random: () => 0.5, keepInBounds: false });
   const initialTexts = game.passages.map((passage) => passage.text);
   game.start();
   const roundTexts = game.passages.map((passage) => passage.text);

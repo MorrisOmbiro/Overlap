@@ -1,6 +1,6 @@
 import type React from "react";
 import { useRef } from "react";
-import { useGame, useGameInput } from "../../hooks";
+import { useGame, useGameInput, useViewportLayout } from "../../hooks";
 import {
   ActivePassageBar,
   DifficultyLegend,
@@ -16,6 +16,7 @@ import {
 import "./Game.css";
 
 const Game: React.FC = () => {
+  const layoutRef = useViewportLayout();
   const arenaRef = useRef<HTMLElement>(null);
   const controls = useGame(arenaRef);
   const { game } = controls;
@@ -30,7 +31,7 @@ const Game: React.FC = () => {
   } = useGameInput(controls);
 
   return (
-    <>
+    <div className="game-shell" ref={layoutRef}>
       <GameHeader onShowHelp={() => helpRef.current?.showModal()} />
       <GameContent>
         <GameToolbar
@@ -73,7 +74,7 @@ const Game: React.FC = () => {
           if (game.status === "running") focusInput();
         }}
       />
-    </>
+    </div>
   );
 };
 

@@ -21,30 +21,29 @@ const DifficultyLegend: React.FC<DifficultyLegendProps> = ({
           <i className="hard" /> Racing <b>4×</b>
         </span>
       </div>
-      <label
-        className="extreme-toggle"
-        title={
-          disabled
-            ? "Change difficulty between rounds"
-            : "Add faster passages worth 8 points per character"
-        }
-      >
-        <input
-          type="checkbox"
-          role="switch"
-          checked={extreme}
-          disabled={disabled}
-          onChange={(event) => onExtremeChange(event.target.checked)}
-          aria-describedby="extreme-description"
-        />
-        <span className="toggle-track" aria-hidden="true" />
-        <span>
-          Extreme <b>8×</b>
-        </span>
-      </label>
-      <span id="extreme-description" className="extreme-description">
-        {disabled ? "Change between rounds" : "Add a fourth difficulty"}
-      </span>
+      {!disabled && (
+        <>
+          <label
+            className="extreme-toggle"
+            title="Add faster passages worth 8 points per character"
+          >
+            <input
+              type="checkbox"
+              role="switch"
+              checked={extreme}
+              onChange={(event) => onExtremeChange(event.target.checked)}
+              aria-describedby="extreme-description"
+            />
+            <span className="toggle-track" aria-hidden="true" />
+            <span>
+              Extreme <b>8×</b>
+            </span>
+          </label>
+          <span id="extreme-description" className="extreme-description">
+            Add a fourth difficulty
+          </span>
+        </>
+      )}
       <label
         className="extreme-toggle bounds-toggle"
         title="Bounce passages off the arena edges"

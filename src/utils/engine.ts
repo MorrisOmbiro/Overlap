@@ -38,7 +38,7 @@ export class GameEngine {
     height = 600,
     compact = false,
     extreme = false,
-    keepInBounds = false,
+    keepInBounds = true,
     best = 0,
     random = Math.random,
   }: GameOptions = {}) {

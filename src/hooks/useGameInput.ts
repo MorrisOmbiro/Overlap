@@ -22,7 +22,7 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
   };
 
   useEffect(() => {
-    if (game.status === "finished") againRef.current?.focus();
+    if (game.status === "finished") inputRef.current?.blur();
   }, [game.status]);
 
   useEffect(() => {
