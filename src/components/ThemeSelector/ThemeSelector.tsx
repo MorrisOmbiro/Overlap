@@ -11,8 +11,20 @@ const ThemeSelector: React.FC = () => {
       Theme
       <select
         value={theme}
+        onPointerDown={(event) => {
+          event.currentTarget.dataset.pointerFocus = "true";
+        }}
+        onKeyDown={(event) => {
+          delete event.currentTarget.dataset.pointerFocus;
+        }}
+        onBlur={(event) => {
+          delete event.currentTarget.dataset.pointerFocus;
+        }}
         onChange={(event) => {
           if (isThemeName(event.target.value)) setTheme(event.target.value);
+          if (event.currentTarget.dataset.pointerFocus) {
+            event.currentTarget.blur();
+          }
         }}
       >
         <optgroup label="Dark themes">

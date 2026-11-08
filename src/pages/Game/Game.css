@@ -130,8 +130,6 @@ label {
   border: 1px solid var(--line);
   border-radius: 14px;
   background-color: var(--surface);
-  background-image: radial-gradient(var(--line) 0.7px, transparent 0.7px);
-  background-size: 24px 24px;
   isolation: isolate;
 }
 
