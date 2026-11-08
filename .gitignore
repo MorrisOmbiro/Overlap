@@ -5,3 +5,6 @@ overlap-site.tar.gz
 .vercel/
 .vercel
 .env*
+
+.env*
+!.env.example

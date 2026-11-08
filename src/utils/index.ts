@@ -7,3 +7,4 @@ export { registerGameTools } from "./gameTools";
 export { generatePassageText } from "./text";
 export { isThemeName, readTheme, saveTheme } from "./theme";
 export { containPassage } from "./bounds";
+export { getSupportUrl } from "./support";

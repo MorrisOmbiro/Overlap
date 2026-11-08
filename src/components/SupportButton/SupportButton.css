@@ -1,0 +1,28 @@
+.support-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid var(--passage-border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.support-button:hover {
+  background: var(--surface-raised);
+  border-color: var(--lime);
+}
+.support-button > span {
+  color: var(--lime);
+}
+.support-dialog .support-link {
+  text-decoration: none;
+}
+.support-dialog .support-note {
+  font-size: 12px;
+}
+.support-dialog {
+  max-width: min(460px, calc(100vw - 32px));
+}

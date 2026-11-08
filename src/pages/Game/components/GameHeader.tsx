@@ -1,4 +1,4 @@
-import { ThemeSelector } from "../../../components";
+import { ThemeSelector, SupportButton } from "../../../components";
 import type React from "react";
 import type { GameHeaderProps } from "./types";
 
@@ -10,6 +10,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onShowHelp }) => (
     </a>
     <div className="header-actions">
       <ThemeSelector />
+      <SupportButton />
       <button className="quiet" onClick={onShowHelp}>
         How to play <span>?</span>
       </button>

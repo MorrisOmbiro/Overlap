@@ -32,7 +32,7 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
         helpRef.current?.open ||
         event.target === inputRef.current ||
         (event.target instanceof Element &&
-          event.target.closest("select, input[type=checkbox]")) ||
+          event.target.closest("select, input[type=checkbox], dialog")) ||
         event.ctrlKey ||
         event.metaKey ||
         event.altKey ||

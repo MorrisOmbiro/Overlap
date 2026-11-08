@@ -9,12 +9,21 @@ import {
 const useGame = (arenaRef: RefObject<HTMLElement | null>) => {
   const engineRef = useRef<GameEngine | null>(null);
   if (!engineRef.current) {
-    engineRef.current = new GameEngine({ best: readBestScore() });
+    // Keep the build render and the first browser render identical.
+    let seed = 42;
+    engineRef.current = new GameEngine({
+      random: () => {
+        seed = (Math.imul(1664525, seed) + 1013904223) >>> 0;
+        return seed / 4294967296;
+      },
+    });
   }
   const [, render] = useReducer((n) => n + 1, 0);
   const game = engineRef.current;
 
   useEffect(() => {
+    game.best = readBestScore();
+    game.random = Math.random;
     const arena = arenaRef.current;
     if (!arena) return;
     const resize = () => {

@@ -98,3 +98,15 @@ required. If routes are introduced later, configure a suitable fallback then.
 Theme preferences and personal best scores belong to the browser origin.
 Values saved on localhost or a temporary hosting URL will not transfer to
 overlap.run.
+
+## Optional support payments
+
+Create a Stripe Payment Link for voluntary support, choosing “Customers choose
+what to pay” for a one-time tip. Set VITE_SUPPORT_URL to the public HTTPS payment
+link in your Vercel project's production environment settings, then redeploy.
+For local development, copy .env.example to .env.local, set the URL, and restart
+Vite. Do not put Stripe secret keys in VITE variables; these are public browser
+configuration. No Stripe SDK or backend is needed for this hosted-link setup.
+
+Without a configured URL, Support explains that contributions are not yet
+available and offers a return to the game. It does not initiate a payment.

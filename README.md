@@ -18,7 +18,9 @@ npm run build
 npm run preview
 ```
 
-Run gameplay regression tests with `npm test` and strict type checking with `npm run typecheck`. The production build also runs type checking.
+Run gameplay regression tests with `npm test` and strict type checking with `npm run typecheck`. The production build also runs type checking and pre-renders the single `/` page into `dist/index.html` using Vite’s SSR build and React’s `renderToString`. The output includes the game UI before JavaScript loads; React hydrates it to enable gameplay. No runtime server is required. Development still uses normal client rendering.
+
+`scripts/prerender.mjs` generates the static HTML from `src/entry-server.tsx` and removes its temporary server bundle afterward. If new routes are added, extend this script to render each route into its own HTML file. The initial game uses repeatable passage generation for matching HTML; browser randomness, saved scores, and saved themes resume after hydration.
 
 ## Source layout
 
