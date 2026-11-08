@@ -11,8 +11,8 @@ function getActiveMessage(status: GameStatus, active: PassageState | null) {
   if (status === "finished")
     return "Take a breath. There is always another run.";
   return active
-    ? "Type the underlined character. Click another passage to switch."
-    : "Click any moving text to join its flow.";
+    ? "Tab to switch flows · Esc to leave · Type the underlined character."
+    : "Click any moving text or press Tab to join its flow.";
 }
 
 function formatPace(passage: PassageState) {

@@ -1,0 +1,620 @@
+:root {
+  --accent: var(--lime);
+  --glass-border: color-mix(in srgb, var(--text) 12%, transparent);
+  --glass: color-mix(in srgb, var(--panel) 82%, transparent);
+}
+
+html:root[data-theme="linen"] {
+  --bg: #f4efeb;
+  --panel: #ffffff;
+  --surface: #faf8f5;
+  --surface-raised: #ffffff;
+  --text: #2a241f;
+  --muted: #736a62;
+  --line: #e1d3c5;
+  --accent: #8a4125;
+  --drifting: #2e5b44;
+  --flowing: #2b4c6f;
+  --racing: #8f5418;
+}
+
+.game-shell {
+  padding: 20px 24px 16px;
+  gap: 18px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-image:
+    radial-gradient(
+      ellipse at 50% 45%,
+      color-mix(in srgb, var(--panel) 55%, transparent),
+      transparent 75%
+    ),
+    radial-gradient(
+      color-mix(in srgb, var(--text) 13%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    auto,
+    28px 28px;
+}
+
+.game-shell > header {
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  height: auto;
+  min-height: 54px;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+}
+
+.game-shell .brand {
+  justify-self: start;
+}
+
+.game-shell .header-actions {
+  justify-self: end;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.game-shell .toolbar {
+  margin: 0;
+  min-height: 54px;
+  padding: 12px 22px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--text) 6%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.game-shell .stats {
+  gap: 24px;
+}
+
+.game-shell .stats > div {
+  min-width: 0;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.game-shell .stats > div + div {
+  border-left: 1px solid var(--glass-border);
+  padding-left: 24px;
+}
+
+.game-shell .stats strong {
+  font:
+    600 23px/1 "JetBrains Mono",
+    monospace;
+  letter-spacing: -1px;
+}
+
+.game-shell .stats label {
+  font:
+    500 10px "JetBrains Mono",
+    monospace;
+  letter-spacing: 1.5px;
+}
+
+.game-shell .stats .time strong {
+  color: var(--accent);
+}
+
+.timer-ring {
+  width: 30px;
+  height: 30px;
+  transform: rotate(-90deg);
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.timer-ring .timer-track {
+  stroke: var(--line);
+}
+
+.game-shell .theme-selector select,
+.game-shell .support-button,
+.game-shell .quiet {
+  padding: 9px 12px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 11px;
+  font-size: 12px;
+  backdrop-filter: blur(12px);
+}
+
+.game-shell .theme-selector {
+  font-size: 11px;
+}
+
+.game-shell .quiet {
+  white-space: nowrap;
+}
+
+.game-shell main {
+  position: relative;
+  max-width: 1720px;
+  padding: 0;
+  gap: 0;
+}
+
+.game-shell #arena {
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--panel) 24%, transparent);
+  box-shadow: inset 0 2px 8px color-mix(in srgb, var(--text) 3%, transparent);
+}
+
+.game-shell .arena-label {
+  font:
+    10px "JetBrains Mono",
+    monospace;
+}
+
+.game-shell .live-dot {
+  background: var(--accent);
+}
+
+.game-shell .passage {
+  width: 300px;
+  padding: 18px;
+  border-radius: 16px;
+  border-color: var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.game-shell .passage .meta {
+  align-items: center;
+  gap: 8px;
+  font:
+    500 9px "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.4px;
+  margin-bottom: 12px;
+}
+
+.game-shell .passage .meta > span:first-child {
+  background: color-mix(in srgb, var(--tone) 9%, transparent);
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+
+.game-shell .passage .words {
+  font:
+    12px/1.75 "JetBrains Mono",
+    monospace;
+}
+
+.game-shell .passage.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--panel) 95%, transparent);
+  box-shadow: 0 16px 40px -8px
+    color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.game-shell .passage.selected .words {
+  font-size: 13px;
+}
+
+.game-shell .typed {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.game-shell .cursor {
+  border-color: var(--accent);
+}
+
+.game-shell .bottom {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.game-shell .bottom > p,
+.game-shell .extreme-description {
+  display: none;
+}
+
+.game-shell .difficulty-controls {
+  width: 100%;
+  gap: 12px;
+}
+
+.game-shell .legend {
+  gap: 8px;
+}
+
+.game-shell .legend > span {
+  padding: 8px 10px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  font:
+    500 10px "JetBrains Mono",
+    monospace;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+}
+
+.game-shell .extreme-toggle {
+  font-size: 11px;
+  padding-left: 12px;
+}
+
+.game-shell .active-bar,
+.game-shell[data-compact="true"] .active-bar {
+  padding: 10px 8px 0;
+  border: 0;
+  gap: 12px;
+}
+
+.game-shell .active-bar > span:first-child {
+  color: var(--accent);
+}
+
+.game-shell .active-bar p {
+  font-size: 11px;
+}
+
+.game-shell .game-intro,
+.game-shell footer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.game-shell .start-card {
+  border-radius: 20px;
+  border-color: var(--glass-border);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(20px);
+}
+
+.game-shell .start-card h2 {
+  font:
+    italic 54px/1 "Instrument Serif",
+    Georgia,
+    serif;
+  letter-spacing: -1px;
+}
+
+.game-shell .start-card .eyebrow,
+.game-shell .final-score {
+  color: var(--accent);
+}
+
+.game-shell .primary {
+  background: var(--accent);
+  color: var(--button-text);
+  border-radius: 10px;
+}
+
+@media (max-width: 1100px) {
+  .game-shell > header {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .game-shell .toolbar {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 10px 20px;
+    min-height: 44px;
+  }
+  .game-shell .timer-ring {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-shell {
+    padding: 10px;
+    gap: 10px;
+  }
+  .game-shell > header {
+    gap: 10px 6px;
+  }
+  .game-shell .header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+  .game-shell .theme-selector {
+    font-size: 0;
+    gap: 0;
+  }
+  .game-shell .theme-selector select {
+    font-size: 11px;
+    max-width: 90px;
+  }
+  .game-shell .support-button,
+  .game-shell .quiet {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+  .game-shell .quiet span {
+    display: none;
+  }
+  .game-shell .toolbar {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+  .game-shell .stats {
+    gap: 14px;
+  }
+  .game-shell .stats > div + div {
+    padding-left: 14px;
+  }
+  .game-shell .stats > div:nth-child(2) {
+    display: flex;
+  }
+  .game-shell .stats > div {
+    gap: 6px;
+  }
+  .game-shell .stats strong {
+    font-size: 18px;
+  }
+  .game-shell .stats label {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .game-shell .timer-ring {
+    display: none;
+  }
+  .game-shell #arena {
+    border-radius: 18px;
+  }
+  .game-shell .passage {
+    width: 240px;
+    padding: 14px;
+  }
+  .game-shell .bottom {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .game-shell .difficulty-controls {
+    gap: 10px;
+  }
+  .game-shell .legend > span {
+    padding: 6px;
+    font-size: 9px;
+    gap: 4px;
+  }
+  .game-shell .extreme-toggle {
+    padding-left: 0;
+    border: 0;
+  }
+  .game-shell .start-card {
+    padding: 20px;
+  }
+  .game-shell .start-card h2 {
+    font-size: 42px;
+  }
+}
+
+@media (max-height: 560px) {
+  .game-shell {
+    padding: 8px 14px;
+    gap: 8px;
+  }
+  .game-shell .start-card h2 {
+    font-size: 32px;
+  }
+  .game-shell .start-card {
+    padding: 12px 20px;
+  }
+}
+
+.game-shell .results-overlay {
+  padding: 16px;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.results-card {
+  width: min(640px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 30px;
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+  box-shadow: 0 20px 70px color-mix(in srgb, var(--text) 18%, transparent);
+  text-align: left;
+}
+
+.results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.results-reason {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  color: var(--accent);
+  font:
+    500 10px "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.results-reason > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.results-heading h2 {
+  margin: 12px 0 0;
+  font:
+    italic 46px/1 "Instrument Serif",
+    Georgia,
+    serif;
+  letter-spacing: -1px;
+}
+
+.results-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.results-score > span,
+.results-metrics dt {
+  color: var(--muted);
+  font:
+    500 10px "JetBrains Mono",
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.results-score strong {
+  color: var(--accent);
+  font:
+    600 clamp(30px, 5vw, 44px)/1 "JetBrains Mono",
+    monospace;
+  letter-spacing: -2px;
+}
+
+.results-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 26px 0;
+}
+
+.results-metrics > div {
+  padding: 16px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+.results-metrics dd {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 12px 0 0;
+  font:
+    600 25px/1.2 "JetBrains Mono",
+    monospace;
+  letter-spacing: -1px;
+}
+
+.results-metrics dd span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.results-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 18px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.game-shell .results-actions .primary {
+  width: auto;
+  gap: 36px;
+  padding: 13px 20px;
+  font-size: 12px;
+}
+
+@media (max-width: 480px), (max-height: 560px) {
+  .results-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .results-heading h2 {
+    font-size: 34px;
+  }
+  .results-metrics {
+    gap: 6px;
+    margin: 18px 0;
+  }
+  .results-metrics > div {
+    padding: 12px 8px;
+  }
+  .results-metrics dt {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  .results-metrics dd {
+    font-size: 21px;
+    margin-top: 8px;
+  }
+  .results-actions {
+    padding-top: 12px;
+  }
+}
+
+.results-badges {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.results-record {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: var(--racing);
+  background: color-mix(in srgb, var(--racing) 9%, var(--panel));
+  font:
+    600 10px "JetBrains Mono",
+    monospace;
+}
+
+.results-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.results-detail {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font:
+    10px "JetBrains Mono",
+    monospace;
+}
+
+@media (max-width: 600px) {
+  .results-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -82,6 +82,10 @@ const useGame = (arenaRef: RefObject<HTMLElement | null>) => {
       game.select(id);
       render();
     },
+    deselect: () => {
+      game.deselect();
+      render();
+    },
     type: (text: string) => {
       game.type(text);
       render();

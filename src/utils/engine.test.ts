@@ -173,3 +173,80 @@ test("bounds can be enabled mid-round and disabled without resetting gameplay", 
   game.tick(0);
   assert.equal(game.active, null);
 });
+
+test("leaving a flow preserves the round and score and allows selecting again", () => {
+  const game = newGame();
+  game.select(0);
+  game.score = 10;
+  game.deselect();
+  assert.equal(game.active, null);
+  assert.equal(game.status, "running");
+  game.tick(1);
+  assert.equal(game.score, 10);
+  assert.equal(game.remaining, 59);
+  assert.equal(game.select(1), true);
+  assert.equal(game.activeId, 1);
+});
+
+test("results count completed passages and reset on replay", () => {
+  const game = newGame();
+  game.select(0);
+  const passage = game.active!;
+  passage.position = passage.text.length - 1;
+  game.type(passage.text.at(-1)!);
+  assert.equal(game.summary().passagesCleared, 1);
+  game.type("extra");
+  assert.equal(game.summary().passagesCleared, 1);
+  game.finish("TIME’S UP");
+  game.start();
+  assert.equal(game.summary().passagesCleared, 0);
+});
+
+test("new personal best requires beating the record and persists in results", () => {
+  const game = new GameEngine({ best: 100 });
+  game.start();
+  game.score = 101;
+  game.finish("TIME’S UP");
+  assert.equal(game.summary().isNewBest, true);
+  assert.equal(game.best, 101);
+  game.finish("TIME’S UP");
+  assert.equal(game.summary().isNewBest, true);
+  game.start();
+  assert.equal(game.summary().isNewBest, false);
+  game.score = 101;
+  game.finish("TIME’S UP");
+  assert.equal(game.summary().isNewBest, false);
+});
+
+test("expired drops count active passages leaving an unbounded arena", () => {
+  const game = newGame();
+  game.setKeepInBounds(false);
+  game.select(0);
+  game.active!.x = game.width + 30;
+  game.tick(0);
+  assert.equal(game.summary().expiredDrops, 1);
+  game.passages[1].x = game.width + 30;
+  game.tick(0);
+  assert.equal(game.summary().expiredDrops, 1);
+  game.finish("TIME’S UP");
+  game.start();
+  assert.equal(game.summary().expiredDrops, 0);
+});
+
+test("peak multiplier tracks scored tiers and Extreme time stops when deselected", () => {
+  const game = new GameEngine({ extreme: true });
+  game.start();
+  const passage = game.passages.find((p) => p.level.mult === 8)!;
+  game.select(passage.id);
+  assert.equal(game.summary().peakMultiplier, 0);
+  game.type(game.active!.text[game.active!.position]);
+  assert.equal(game.summary().peakMultiplier, 8);
+  game.tick(1);
+  game.deselect();
+  game.tick(1);
+  assert.equal(game.summary().extremeSeconds, 1);
+  game.finish("TEST");
+  game.start();
+  assert.equal(game.summary().peakMultiplier, 0);
+  assert.equal(game.summary().extremeSeconds, 0);
+});

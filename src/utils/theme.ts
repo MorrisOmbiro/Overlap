@@ -17,9 +17,9 @@ const isThemeName = (value: unknown): value is ThemeName =>
 const readTheme = (): ThemeName => {
   try {
     const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    return isThemeName(storedTheme) ? storedTheme : "forest";
+    return isThemeName(storedTheme) ? storedTheme : "linen";
   } catch {
-    return "forest";
+    return "linen";
   }
 };
 

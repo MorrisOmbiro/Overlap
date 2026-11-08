@@ -15,6 +15,7 @@ const GameArena: React.FC<GameArenaProps> = ({
 }) => (
   <section
     id="arena"
+    tabIndex={-1}
     data-bounded={keepInBounds}
     ref={arenaRef}
     aria-label="Moving typing passages"

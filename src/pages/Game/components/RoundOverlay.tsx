@@ -32,19 +32,73 @@ const RoundOverlay: React.FC<RoundOverlayProps> = ({
       </div>
     )}
     {status === "finished" && (
-      <div className="overlay">
-        <div className="start-card">
-          <span className="eyebrow">{reason}</span>
-          <h2>That’s your run.</h2>
-          <div className="final-score">{score}</div>
-          <p>
-            {summary.wpm} WPM · {summary.accuracy}% accuracy ·{" "}
-            {summary.characters} characters
-          </p>
-          <button ref={buttonRef} className="primary" onClick={onStart}>
-            Find your flow again ↗
-          </button>
-        </div>
+      <div className="overlay results-overlay">
+        <section className="results-card" aria-label="Game results">
+          <div className="results-heading">
+            <div className="results-badges">
+              <span className="results-reason">
+                <span aria-hidden="true" />
+                {reason === "OVERTAKEN" ? "Overtaken" : "Time’s up"}
+              </span>
+              {summary.isNewBest && (
+                <span className="results-record">
+                  <span aria-hidden="true">★</span> New Personal Best
+                </span>
+              )}
+            </div>
+            <div className="results-score">
+              <span>Final score</span>
+              <strong>{score.toLocaleString("en-US")}</strong>
+            </div>
+          </div>
+          <dl className="results-metrics">
+            <div>
+              <dt>Typing speed</dt>
+              <dd>
+                {summary.wpm}
+                <span>WPM</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Accuracy</dt>
+              <dd>
+                {summary.accuracy}
+                <span>%</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Characters</dt>
+              <dd>{summary.characters}</dd>
+            </div>
+            <div>
+              <dt>Passages cleared</dt>
+              <dd>
+                {summary.passagesCleared}
+                <span>cards</span>
+              </dd>
+              <span className="results-detail">
+                {summary.expiredDrops} expired drops
+              </span>
+            </div>
+            <div>
+              <dt>Peak multiplier</dt>
+              <dd>
+                {summary.peakMultiplier}
+                <span>×</span>
+              </dd>
+              {summary.extremeEnabled && (
+                <span className="results-detail">
+                  {summary.extremeSeconds}s in Extreme
+                </span>
+              )}
+            </div>
+          </dl>
+          <div className="results-actions">
+            <button ref={buttonRef} className="primary" onClick={onStart}>
+              Play again <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </section>
       </div>
     )}
   </>

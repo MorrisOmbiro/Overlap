@@ -5,7 +5,7 @@ import { readTheme, saveTheme } from "../utils/theme";
 import { ThemeContext } from "./ThemeContext";
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeName>("forest");
+  const [theme, setTheme] = useState<ThemeName>("linen");
 
   useEffect(() => {
     setTheme(readTheme());

@@ -14,6 +14,7 @@ import {
   TypingInput,
 } from "./components";
 import "./Game.css";
+import "./SpatialLayout.css";
 
 const Game: React.FC = () => {
   const layoutRef = useViewportLayout();
@@ -32,13 +33,14 @@ const Game: React.FC = () => {
 
   return (
     <div className="game-shell" ref={layoutRef}>
-      <GameHeader onShowHelp={() => helpRef.current?.showModal()} />
-      <GameContent>
+      <GameHeader onShowHelp={() => helpRef.current?.showModal()}>
         <GameToolbar
           score={game.score}
           best={game.best}
           remaining={Math.ceil(game.remaining)}
         />
+      </GameHeader>
+      <GameContent>
         <GameArena
           keepInBounds={game.keepInBounds}
           arenaRef={arenaRef}

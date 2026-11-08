@@ -31,6 +31,12 @@ export class GameEngine {
   messageTime: number;
   reason: string;
   passages: PassageState[] = [];
+  passagesCleared = 0;
+  expiredDrops = 0;
+  isNewBest = false;
+  peakMultiplier = 0;
+  extremeSeconds = 0;
+  private roundExtremeEnabled = false;
   private usedSentences = new Set<string>();
 
   constructor({
@@ -113,6 +119,12 @@ export class GameEngine {
     }
     this.seed();
     this.status = "running";
+    this.passagesCleared = 0;
+    this.expiredDrops = 0;
+    this.isNewBest = false;
+    this.peakMultiplier = 0;
+    this.extremeSeconds = 0;
+    this.roundExtremeEnabled = this.extreme;
     this.score = 0;
     this.correct = 0;
     this.attempts = 0;
@@ -130,6 +142,11 @@ export class GameEngine {
     this.activeId = passageId;
     preparePassageSelection(passage);
     return true;
+  }
+
+  deselect() {
+    if (this.status !== "running") return;
+    this.activeId = null;
   }
 
   notify(message: string) {
@@ -155,10 +172,12 @@ export class GameEngine {
         passage.typed.add(passage.position);
         this.score += passage.level.mult;
         this.correct++;
+        this.peakMultiplier = Math.max(this.peakMultiplier, passage.level.mult);
       }
       passage.position++;
       passage.errorTime = 0;
       if (passage.position >= passage.text.length) {
+        this.passagesCleared++;
         this.activeId = null;
         this.notify("Passage complete. Find your next flow.");
       }
@@ -166,8 +185,10 @@ export class GameEngine {
   }
 
   finish(reason: string) {
+    if (this.status === "finished") return;
     this.status = "finished";
     this.reason = reason;
+    this.isNewBest = this.score > this.best;
     this.best = Math.max(this.best, this.score);
   }
 
@@ -182,6 +203,9 @@ export class GameEngine {
     );
     this.messageTime = Math.max(0, this.messageTime - elapsedSeconds);
     if (this.status === "running") {
+      if (this.roundExtremeEnabled && this.active?.level.mult === 8) {
+        this.extremeSeconds += Math.min(elapsedSeconds, this.remaining);
+      }
       this.elapsed = Math.min(ROUND_SECONDS, this.elapsed + elapsedSeconds);
       if (this.remaining === 0) {
         this.finish("TIME’S UP");
@@ -243,6 +267,7 @@ export class GameEngine {
 
       if (!this.keepInBounds && hasLeftArena) {
         if (passage.id === this.activeId) {
+          this.expiredDrops++;
           this.activeId = null;
           this.notify("Your passage drifted away. Choose another.");
         }
@@ -261,6 +286,12 @@ export class GameEngine {
         ? Math.round((this.correct / this.attempts) * 100)
         : 0,
       characters: this.correct,
+      passagesCleared: this.passagesCleared,
+      expiredDrops: this.expiredDrops,
+      isNewBest: this.isNewBest,
+      peakMultiplier: this.peakMultiplier,
+      extremeSeconds: Math.floor(this.extremeSeconds),
+      extremeEnabled: this.roundExtremeEnabled,
     };
   }
 }

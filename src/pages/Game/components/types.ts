@@ -3,6 +3,7 @@ import type { GameStatus, PassageState } from "../../../types";
 
 export interface GameHeaderProps {
   onShowHelp: () => void;
+  children?: ReactNode;
 }
 export interface GameToolbarProps {
   score: number;
@@ -13,7 +14,17 @@ export interface RoundOverlayProps {
   status: GameStatus;
   reason: string;
   score: number;
-  summary: { wpm: number; accuracy: number; characters: number };
+  summary: {
+    wpm: number;
+    accuracy: number;
+    characters: number;
+    passagesCleared: number;
+    expiredDrops: number;
+    isNewBest: boolean;
+    peakMultiplier: number;
+    extremeSeconds: number;
+    extremeEnabled: boolean;
+  };
   buttonRef: RefObject<HTMLButtonElement | null>;
   onStart: () => void;
 }

@@ -25,8 +25,10 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ helpRef, onClose }) => (
         untyped character it passes costs points.
       </li>
       <li>
-        <b>Change course freely.</b> Click another passage anytime. Only your
-        active passage affects your score.
+        <b>Change course freely.</b> Click another passage or press Tab to hop
+        to the next flow (Shift+Tab goes back). Press Escape to leave your flow
+        and choose again. Only your active passage affects your score; the timer
+        keeps running while you choose.
       </li>
       <li>
         <b>Choose your risk.</b> Earn 1, 2, or 4 points per correct character.

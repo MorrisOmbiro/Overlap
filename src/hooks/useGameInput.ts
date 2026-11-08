@@ -1,7 +1,13 @@
 import { useEffect, useRef, type SyntheticEvent } from "react";
 import type { GameControls } from "../types";
 
-const useGameInput = ({ game, start, select, type }: GameControls) => {
+const useGameInput = ({
+  game,
+  start,
+  select,
+  deselect,
+  type,
+}: GameControls) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const helpRef = useRef<HTMLDialogElement>(null);
   const againRef = useRef<HTMLButtonElement>(null);
@@ -30,7 +36,6 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
       if (
         game.status !== "running" ||
         helpRef.current?.open ||
-        event.target === inputRef.current ||
         (event.target instanceof Element &&
           event.target.closest("select, input[type=checkbox], dialog")) ||
         event.ctrlKey ||
@@ -39,6 +44,33 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
         event.isComposing
       )
         return;
+      const inPlayingField =
+        event.target === inputRef.current ||
+        event.target === document.body ||
+        (event.target instanceof Element && !!event.target.closest("#arena"));
+      if (inPlayingField && event.key === "Tab") {
+        if (!game.passages.length) return;
+        event.preventDefault();
+        const current = game.passages.findIndex((p) => p.id === game.activeId);
+        const next =
+          current < 0
+            ? event.shiftKey
+              ? game.passages.length - 1
+              : 0
+            : (current + (event.shiftKey ? -1 : 1) + game.passages.length) %
+              game.passages.length;
+        select(game.passages[next].id);
+        focusInput();
+        return;
+      }
+      if (inPlayingField && event.key === "Escape") {
+        event.preventDefault();
+        deselect();
+        inputRef.current?.blur();
+        document.getElementById("arena")?.focus({ preventScroll: true });
+        return;
+      }
+      if (event.target === inputRef.current) return;
       if (event.key.length === 1) {
         event.preventDefault();
         game.type(event.key);
@@ -47,7 +79,7 @@ const useGameInput = ({ game, start, select, type }: GameControls) => {
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [game]);
+  }, [game, select, deselect]);
 
   return {
     inputRef,

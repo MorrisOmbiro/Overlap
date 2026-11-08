@@ -2,12 +2,12 @@ import { ThemeSelector, SupportButton } from "../../../components";
 import type React from "react";
 import type { GameHeaderProps } from "./types";
 
-const GameHeader: React.FC<GameHeaderProps> = ({ onShowHelp }) => (
+const GameHeader: React.FC<GameHeaderProps> = ({ onShowHelp, children }) => (
   <header>
     <a className="brand" href="./">
       <span className="brandmark">◧</span> overlap
-      <span className="edition">A GAME OF PACE</span>
     </a>
+    {children}
     <div className="header-actions">
       <ThemeSelector />
       <SupportButton />
