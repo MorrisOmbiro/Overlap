@@ -3,7 +3,9 @@ import { useSupportDialog } from "../../hooks";
 import { getSupportUrl } from "../../utils/support";
 import "./SupportButton.css";
 
-const supportUrl = getSupportUrl(import.meta.env.VITE_SUPPORT_URL);
+const supportUrl = getSupportUrl(
+  import.meta.env.VITE_SUPPORT_URL?.trim() || "https://ko-fi.com/overlapgame",
+);
 
 const SupportButton: React.FC = () => {
   const { dialogRef, openSupport, closeSupport } = useSupportDialog();
@@ -39,7 +41,7 @@ const SupportButton: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Leave a tip <span aria-hidden="true">↗</span>
+            Support on Ko-fi <span aria-hidden="true">↗</span>
           </a>
         ) : (
           <p>
@@ -49,7 +51,7 @@ const SupportButton: React.FC = () => {
         )}
         {supportUrl && (
           <p className="support-note">
-            Opens a secure payment page in a new tab.
+            Opens Ko-fi in a new tab to make a voluntary contribution.
           </p>
         )}
         <button className="quiet" onClick={closeSupport}>

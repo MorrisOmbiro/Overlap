@@ -101,12 +101,13 @@ overlap.run.
 
 ## Optional support payments
 
-Create a Stripe Payment Link for voluntary support, choosing “Customers choose
-what to pay” for a one-time tip. Set VITE_SUPPORT_URL to the public HTTPS payment
-link in your Vercel project's production environment settings, then redeploy.
-For local development, copy .env.example to .env.local, set the URL, and restart
-Vite. Do not put Stripe secret keys in VITE variables; these are public browser
-configuration. No Stripe SDK or backend is needed for this hosted-link setup.
+The Support dialog links to https://ko-fi.com/overlapgame by default. No
+environment configuration, payment SDK, or backend is needed to accept support
+through Ko-fi.
 
-Without a configured URL, Support explains that contributions are not yet
-available and offers a return to the game. It does not initiate a payment.
+To override the destination, set VITE_SUPPORT_URL to a public HTTPS support link
+in your Vercel project's production environment settings, then redeploy. For
+local development, copy .env.example to .env.local, set the URL, and restart
+Vite. VITE variables are public browser configuration; never put secret keys in
+them. An empty value uses the default Ko-fi page; an invalid non-HTTPS value
+disables the contribution link.
