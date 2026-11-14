@@ -1,5 +1,6 @@
 import type React from "react";
 import type { RoundOverlayProps } from "./types";
+import ShareResults from "./ShareResults";
 
 const RoundOverlay: React.FC<RoundOverlayProps> = ({
   status,
@@ -94,6 +95,7 @@ const RoundOverlay: React.FC<RoundOverlayProps> = ({
             </div>
           </dl>
           <div className="results-actions">
+            <ShareResults score={score} summary={summary} />
             <button ref={buttonRef} className="primary" onClick={onStart}>
               Play again <span aria-hidden="true">↗</span>
             </button>

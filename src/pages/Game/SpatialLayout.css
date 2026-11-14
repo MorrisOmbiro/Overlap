@@ -537,9 +537,17 @@ html:root[data-theme="linen"] {
 
 .results-actions {
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
   justify-content: flex-end;
   padding-top: 18px;
   border-top: 1px solid var(--glass-border);
+}
+
+.results-share {
+  flex: 1 1 150px;
+  min-width: 0;
 }
 
 .game-shell .results-actions .primary {
